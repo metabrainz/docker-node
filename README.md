@@ -18,7 +18,7 @@ Configuration for it must be stored in the */etc/consul-template.conf* file. See
 ## Usage
 
 To use these images simply specify `FROM metabrainz/node:<TAG>` at the beginning of your Dockerfile.
-`<TAG>` is a version of Python that you need to use. List of available tags is at https://hub.docker.com/r/metabrainz/node/tags/.
+`<TAG>` is a version of node that you need to use. List of available tags is at https://hub.docker.com/r/metabrainz/node/tags/.
 
 ## Building and deploying images
 
