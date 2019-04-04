@@ -1,4 +1,4 @@
-FROM metabrainz/consul-template-base:v0.19.4
+FROM metabrainz/consul-template-base:v0.16
 
 # This Dockerfile is based on 
 # https://github.com/nodejs/docker-node/blob/master/10/stretch/Dockerfile
@@ -70,5 +70,3 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
-
-CMD [ "node" ]
