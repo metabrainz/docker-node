@@ -1,4 +1,4 @@
-FROM metabrainz/consul-template-base:v0.16
+FROM metabrainz/consul-template-base:v0.19.4
 
 # This Dockerfile is based on 
 # https://github.com/nodejs/docker-node/blob/master/10/stretch/Dockerfile
