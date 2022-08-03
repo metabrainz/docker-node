@@ -5,6 +5,13 @@ FROM metabrainz/consul-template-base:v0.19.4
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
+  
+# remove expired let's encrypt certificate and install new ones
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /usr/share/ca-certificates/mozilla/DST_Root_CA_X3.crt \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_VERSION 16.16.0
 
