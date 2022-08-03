@@ -8,8 +8,12 @@ do
 	pushd "$(dirname "${BASH_SOURCE[0]}")/${version}/"
 	echo "Building ${version}..."
 	docker build -t metabrainz/node:${version} .
-	echo "Pushing ${version}..."
-	docker push metabrainz/node:${version}
+	if [ "$?" -eq 0 ]; then
+		echo "Pushing ${version}..."
+		docker push metabrainz/node:${version}
+	else
+		echo "Building image failed, skipping pushing image to Docker Hub"
+	fi
 	popd
 done
 
