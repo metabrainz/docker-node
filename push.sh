@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Build all Python images image from the currently checked out version and
+# Build all Node images from the currently checked out version and
 # push them it to the Docker Hub.
 
 for version in 16
