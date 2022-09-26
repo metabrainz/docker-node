@@ -1,4 +1,4 @@
-FROM metabrainz/consul-template-base:v0.19.4
+FROM metabrainz/consul-template-base:focal-1.1.0_ct_0.27.1
 
 # This Dockerfile is based on
 # https://github.com/nodejs/docker-node/blob/main/16/stretch/Dockerfile
