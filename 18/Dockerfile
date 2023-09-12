@@ -1,17 +1,10 @@
 FROM metabrainz/consul-template-base:focal-1.1.0_ct_0.27.1
 
 # This Dockerfile is based on
-# https://github.com/nodejs/docker-node/blob/main/16/stretch/Dockerfile
+# https://github.com/nodejs/docker-node/blob/main/18/bookworm/Dockerfile
 
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
-  
-# # remove expired let's encrypt certificate and install new ones
-# RUN apt-get update \
-#     && apt-get install -y --no-install-recommends ca-certificates \
-#     && rm -rf /usr/share/ca-certificates/mozilla/DST_Root_CA_X3.crt \
-#     && update-ca-certificates \
-#     && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_VERSION 18.17.1
 
