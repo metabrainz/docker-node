@@ -4,7 +4,7 @@
 # Build all Node images from the currently checked out version and
 # push them it to the Docker Hub.
 
-for version in 10, 16, 18
+for version in 10 16 18 20
 do
 	pushd "$(dirname "${BASH_SOURCE[0]}")/${version}/"
 	echo "Building ${version}..."
