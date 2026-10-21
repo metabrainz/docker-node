@@ -2,7 +2,7 @@ FROM metabrainz/consul-template-base:master
 
 # This Dockerfile is based on
 # https://github.com/nodejs/docker-node/blob/main/24/bookworm/Dockerfile
-# Modified to add required build-essential
+# Modified to add required xz-utils
 
 RUN groupadd --gid 1001 node && useradd --uid 1001 --gid node --shell /bin/bash --create-home node
 
@@ -15,9 +15,9 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     arm64) ARCH='arm64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac \
-  && buildDeps='build-essential' \
+  && buildDeps='xz-utils' \
   && apt-get update \
-  && apt-get install -y $buildDeps --no-install-recommends \
+  && apt-get install -y --no-install-recommends $buildDeps \
   # use pre-existing gpg directory, see https://github.com/nodejs/docker-node/pull/1895#issuecomment-1550389150
   && export GNUPGHOME="$(mktemp -d)" \
   # gpg keys listed at https://github.com/nodejs/node#release-keys
@@ -43,6 +43,8 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
   && tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
+  && apt-get purge -y --auto-remove $buildDeps \
+  && rm -rf /var/lib/apt/lists/* \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   # smoke tests
   && node --version \
